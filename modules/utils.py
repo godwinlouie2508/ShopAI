@@ -15,7 +15,6 @@ if hasattr(st, 'secrets'):
 else:
     from config import AZURE_ENDPOINT, AZURE_KEY
 
-from config import SITE_DOMAINS
 
 def extract_text_from_image(image_file):
     """Performs OCR on an uploaded image using Azure Vision."""
