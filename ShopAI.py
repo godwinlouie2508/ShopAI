@@ -38,8 +38,29 @@ with center_col:
     if st.session_state.mode == "Upload Image":
         img = st.file_uploader("Upload your handwritten list", type=["jpg", "png", "jpeg", "webp"])
         if img:
-            with st.spinner("🔍 Extracting text..."):
-                extracted = utils.extract_text_from_image(img)
+            with st.spinner("🔍 Extracting text from image..."):
+                ocr_raw = utils.extract_text_from_image(img)
+
+            if ocr_raw:
+                st.info("✅ Text extracted. Now using AI to clean up the list...")
+                with st.spinner("🤖 Refining list with GPT..."):
+                    try:
+                        openai.api_key = OPENAI_KEY
+                        ai_resp = openai.chat.completions.create(
+                            model="gpt-4o-mini",  # Using a modern, efficient model
+                            messages=[
+                                {"role": "system",
+                                 "content": "You turn raw OCR text from a shopping list into a precise list. Retain specific details like model or size. Return only a JSON array of strings."},
+                                {"role": "user", "content": json.dumps(ocr_raw)}
+                            ]
+                        )
+                        extracted = json.loads(ai_resp.choices[0].message.content)
+                    except (json.JSONDecodeError, IndexError, Exception) as e:
+                        st.warning(f"⚠️ AI cleanup failed: {e}. Using raw text instead.")
+                        extracted = ocr_raw  # Fallback to raw OCR text if AI fails
+            else:
+                st.warning("⚠️ No text was detected in the uploaded image.")
+
     else:  # Chat with AI
         prompt = st.text_input("Describe your shopping needs (e.g., 'a new macbook pro and two t-shirts'):",
                                key="chat_prompt")
@@ -47,10 +68,10 @@ with center_col:
             with st.spinner("💡 Parsing with GPT..."):
                 openai.api_key = OPENAI_KEY
                 ai_resp = openai.chat.completions.create(
-                    model="gpt-4.1-mini",
+                    model="gpt-4o-mini",
                     messages=[
                         {"role": "system",
-                         "content": "Extract specific shopping items. Return only a JSON array of strings."},
+                         "content": "You are a shopping assistant. Extract specific shopping items. Remove any unnecessary hyphens but Retain specific details like model or size. Return only a JSON array of strings."},
                         {"role": "user", "content": prompt}
                     ]
                 )
