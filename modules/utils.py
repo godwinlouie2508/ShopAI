@@ -6,7 +6,6 @@ from PIL import Image
 import io
 import time
 from typing import List
-from config import AZURE_ENDPOINT, AZURE_KEY, SITE_DOMAINS
 from constants import SITE_DOMAINS
 
 # Use Streamlit secrets if deployed, otherwise use local config file

@@ -6,8 +6,8 @@ import openai
 import re
 from urllib.parse import urlparse
 from typing import List, Dict, Optional
-from config import SERP_API_KEY, OPENAI_KEY
-from modules.utils import get_site_domains, get_primary_domain # <-- Add get_primary_domain here
+#from config import SERP_API_KEY, OPENAI_KEY
+#from modules.utils import get_site_domains, get_primary_domain # <-- Add get_primary_domain here
 
 # Use Streamlit secrets if deployed, otherwise use local config file
 if hasattr(st, 'secrets'):
@@ -30,17 +30,6 @@ def clean_search_query(query: str) -> str:
     for old, new in replacements.items():
         cleaned = re.sub(rf'\b{old}\b', new, cleaned, flags=re.IGNORECASE)
     return cleaned
-
-# def optimize_query_for_google_shopping(item_name: str, site_preference: str) -> str:
-#     """Optimizes the search query for Google Shopping."""
-#     cleaned_query = clean_search_query(item_name)
-#     modifiers = []
-#     if "new" not in cleaned_query.lower():
-#         modifiers.append("new")
-#     if site_preference.lower() != "any":
-#         modifiers.append(site_preference)
-#     return " ".join([cleaned_query] + modifiers)
-
 
 def optimize_query_for_google_shopping(item_name: str, site_preference: str) -> str:
     """Optimizes the query by adding keywords, NOT a strict site: filter."""
