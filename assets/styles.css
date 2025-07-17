@@ -1,0 +1,100 @@
+/* assets/styles.css */
+
+/* General button styling */
+.stButton > button {
+  background-color: #1E88E5 !important;
+  color: white !important;
+  border-radius: 5px !important;
+  border: none !important;
+}
+.stButton > button:hover {
+  background-color: #1565C0 !important;
+  color: white !important;
+}
+
+/* Styling for product cards */
+.main .block-container .element-container:has(.stSelectbox) {
+  border: 2px solid #e0e0e0 !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  margin: 10px 0 !important;
+  background-color: #fafafa !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+}
+
+.product-price {
+  font-size: 1.3em !important;
+  font-weight: bold !important;
+  color: #1E88E5 !important;
+  margin-bottom: 10px !important;
+}
+
+.buy-button {
+  background-color: #1E88E5 !important;
+  color: white !important;
+  border: none !important;
+  padding: 10px 20px !important;
+  border-radius: 5px !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  margin-top: 10px !important;
+  font-weight: bold !important;
+}
+
+.buy-button:hover {
+  background-color: #1565C0 !important;
+  text-decoration: none !important;
+}
+
+.why-explanation {
+  background-color: #f0f8ff !important;
+  border: 1px solid #1E88E5 !important;
+  border-radius: 5px !important;
+  padding: 10px !important;
+  margin: 10px 0 !important;
+  font-style: italic !important;
+  color: #333 !important;
+}
+
+/* Independent scrolling for columns */
+.scrollable-column {
+    max-height: 95vh;
+    overflow-y: auto;
+    padding: 0 15px;
+}
+
+/* Sidebar styling */
+.stSidebar > div:first-child {
+    background-color: white !important;
+    border-right: 0.5px solid gray !important;
+}
+.app-summary-text {
+  font-size: 26px !important;
+  font-weight: bold !important;
+  color: #F66433 !important;
+  font-style: italic !important;
+  padding: 5px 0;
+}
+
+/* Cart Total Value box */
+div[data-testid="stMetric"] {
+    background-color: #1E88E5 !important;
+    color: white !important;
+    padding: 15px !important;
+    border-radius: 8px !important;
+    margin-top: 20px !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+}
+div[data-testid="stMetric"] label {
+    color: white !important;
+    font-size: 1.1em !important;
+}
+div[data-testid="stMetric"] div[data-testid="stMetricValue"] {
+    color: white !important;
+    font-weight: bold !important;
+    font-size: 2em !important;
+}
+/* Set a custom width for the sidebar */
+[data-testid="stSidebar"] {
+  width: 350px !important;
+}
