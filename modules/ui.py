@@ -16,7 +16,7 @@ def setup_page():
     symbol_path = project_root / "assets" / "Symbol.png"
     st.set_page_config(
         page_title="ShopAI",
-        page_icon=st.image(symbol_path),
+        page_icon=Image.open(symbol_path),
         layout="wide"
     )
     load_css("assets/styles.css")
