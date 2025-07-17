@@ -47,7 +47,7 @@ with center_col:
                     try:
                         openai.api_key = OPENAI_KEY
                         ai_resp = openai.chat.completions.create(
-                            model="gpt-4o-mini",  # Using a modern, efficient model
+                            model="gpt-4.1-nano",  # Using a modern, efficient model
                             messages=[
                                 {"role": "system",
                                  "content": "You turn raw OCR text from a shopping list into a precise list. Retain specific details like model or size. Return only a JSON array of strings."},
@@ -68,7 +68,7 @@ with center_col:
             with st.spinner("💡 Parsing with GPT..."):
                 openai.api_key = OPENAI_KEY
                 ai_resp = openai.chat.completions.create(
-                    model="gpt-4o-mini",
+                    model="gpt-4.1-mini",
                     messages=[
                         {"role": "system",
                          "content": "You are a shopping assistant. Extract specific shopping items. Remove any unnecessary hyphens but Retain specific details like model or size. Return only a JSON array of strings."},
