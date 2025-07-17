@@ -12,9 +12,11 @@ def load_css(file_path):
 
 def setup_page():
     """Sets up the Streamlit page configuration and loads CSS."""
+    project_root = Path(__file__).parent.parent
+    symbol_path = project_root / "assets" / "Symbol.png"
     st.set_page_config(
-        page_title="ShopAI - Smart Shopping",
-        page_icon="🛒",
+        page_title="ShopAI",
+        page_icon=st.image(symbol_path),
         layout="wide"
     )
     load_css("assets/styles.css")
