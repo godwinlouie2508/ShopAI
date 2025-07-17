@@ -36,7 +36,7 @@ with center_col:
     # --- 4. ITEM EXTRACTION (OCR or CHAT) ---
     extracted = []
     if st.session_state.mode == "Upload Image":
-        img = st.file_uploader("Upload your handwritten list", type=["jpg", "png", "jpeg"])
+        img = st.file_uploader("Upload your handwritten list", type=["jpg", "png", "jpeg", "webp"])
         if img:
             with st.spinner("🔍 Extracting text..."):
                 extracted = utils.extract_text_from_image(img)

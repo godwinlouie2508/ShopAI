@@ -7,7 +7,7 @@ import re
 from urllib.parse import urlparse
 from typing import List, Dict, Optional
 #from config import SERP_API_KEY, OPENAI_KEY
-#from modules.utils import get_site_domains, get_primary_domain # <-- Add get_primary_domain here
+
 
 # Use Streamlit secrets if deployed, otherwise use local config file
 if hasattr(st, 'secrets'):

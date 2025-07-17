@@ -5,6 +5,7 @@ import requests
 from PIL import Image
 import io
 import time
+import json
 from typing import List
 from constants import SITE_DOMAINS
 
@@ -30,6 +31,11 @@ def extract_text_from_image(image_file):
                          headers=headers, data=buf.getvalue())
     if resp.status_code != 202:
         st.error("🛑 OCR submission failed.")
+        try:
+            error_details = resp.json()
+            st.error(f"Error Details: {error_details.get('error', {}).get('message', 'No specific error message.')}")
+        except json.JSONDecodeError:
+            st.error(f"Raw response: {resp.text}")
         return []
     op_url = resp.headers["Operation-Location"]
     for _ in range(15):
